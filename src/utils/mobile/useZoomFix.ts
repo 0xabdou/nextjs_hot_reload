@@ -10,12 +10,10 @@ const useZoomFix = (): string => {
   useEffect(() => {
     if (navigator.userAgent.match(/iPhone/i) || true) {
       window.addEventListener('gesturestart', function () {
-        console.log('GESTURE START');
         if (timer) clearTimeout(timer);
         setViewport(zoomEnabled);
       }, false);
       window.addEventListener('touchend', function () {
-        console.log('GESTURE END');
         if (timer) clearTimeout(timer);
         const newTimer = setTimeout(function () {
           setViewport(zoomDisabled);

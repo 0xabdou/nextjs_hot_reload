@@ -9,6 +9,7 @@
         "legacy": true
       }
     ],
+    "@babel/plugin-transform-modules-commonjs",
     "babel-plugin-transform-typescript-metadata"
   ]
 }

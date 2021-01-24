@@ -13,6 +13,7 @@ const CustomHead = () => {
     <Head>
       <title>Enhanced boilerplate</title>
       <meta id='viewport' name="viewport" content={viewport} key='viewport'/>
+      <script src="https://apis.google.com/js/platform.js"/>
     </Head>
   );
 };

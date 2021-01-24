@@ -22,7 +22,8 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "types": [
-      "reflect-metadata"
+      "reflect-metadata",
+      "gapi.auth2"
     ]
   },
   "exclude": [
