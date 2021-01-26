@@ -1,20 +1,21 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AppDispatch, AppState} from "../../store/store";
 import {Services} from "../../injection/services";
-import {AuthError} from "./auth-repository";
+import AuthError from "./types/auth-error";
 import {isRight} from "fp-ts/Either";
+import AuthUser from "./types/auth-user";
 
 type AuthState = {
-  userId: string | null,
+  authUser: AuthUser | null,
   authError: AuthError | null,
 };
 
 const initialState: AuthState = {
-  userId: null,
+  authUser: null,
   authError: null,
 };
 
-const signInWithGoogle = createAsyncThunk<string,
+const signInWithGoogle = createAsyncThunk<AuthUser,
   void,
   {
     dispatch: AppDispatch,
@@ -46,7 +47,7 @@ const authSlice = createSlice({
       })
       .addCase(signInWithGoogle.fulfilled, (state, action) => {
         console.log(action);
-        state.userId = action.payload;
+        state.authUser = action.payload;
       })
       .addCase(signInWithGoogle.rejected, (state, action) => {
         console.log(action);

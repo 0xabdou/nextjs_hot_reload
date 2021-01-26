@@ -1,5 +1,6 @@
 const TYPES = {
   IAuthRepository: Symbol('IAuthRepository'),
+  IAuthApi: Symbol('IAuthApi'),
   GoogleAuth: Symbol('GoogleAuth'),
   AppStore: Symbol('AppStore')
 };

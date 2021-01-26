@@ -7,8 +7,8 @@ import {AuthError} from "../features/auth/auth-repository";
 const Home = () => {
   const state = useSelector((state: AppState) => state.auth, shallowEqual);
   console.log(state);
-  if (state.userId)
-    return <LoggedInScreen userId={state.userId}/>;
+  if (state.authUser)
+    return <LoggedInScreen userId={state.authUser.accessToken}/>;
   return <LoginScreen error={state.authError}/>;
 };
 
