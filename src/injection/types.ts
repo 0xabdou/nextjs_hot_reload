@@ -1,4 +1,5 @@
 const TYPES = {
+  ILocalStorage: Symbol('ILocalStorage'),
   IAuthRepository: Symbol('IAuthRepository'),
   IAuthApi: Symbol('IAuthApi'),
   GoogleAuth: Symbol('GoogleAuth'),

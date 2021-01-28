@@ -2,7 +2,7 @@ import {shallowEqual, useDispatch, useSelector} from "react-redux";
 import {AppState} from "../store/store";
 import React from "react";
 import {signInWithGoogle} from "../features/auth/auth-slice";
-import {AuthError} from "../features/auth/auth-repository";
+import AuthError from "../features/auth/types/auth-error";
 
 const Home = () => {
   const state = useSelector((state: AppState) => state.auth, shallowEqual);

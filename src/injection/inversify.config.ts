@@ -6,11 +6,13 @@ import {GoogleAuth} from "../features/auth/services/google-auth";
 import IAuthRepository, {AuthRepository} from "../features/auth/auth-repository";
 import {Services} from "./services";
 import {FakeAuthApi, IAuthApi} from "../features/auth/services/auth-api";
+import {ILocalStorage, LocalStorage} from "../features/auth/services/local-storage";
 
 const container = new Container();
 
-// Initialize the DI container here
 const initDependencies = async () => {
+  // Local storage
+  container.bind<ILocalStorage>(TYPES.ILocalStorage).to(LocalStorage);
   // Google auth
   container.bind<GoogleAuth>(TYPES.GoogleAuth).to(GoogleAuth);
   // Auth api
