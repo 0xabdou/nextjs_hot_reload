@@ -49,7 +49,7 @@ const getAuthUser = createAsyncThunk<AuthUser | null, void, ThunkApiType>(
   },
 );
 
-const signOut= createAsyncThunk<null, void, ThunkApiType>(
+const signOut = createAsyncThunk<null, void, ThunkApiType>(
   'auth/signOut',
   async (_, thunkApi) => {
     const result = await thunkApi.extra.services.authRepository.signOut();
@@ -61,6 +61,24 @@ const signOut= createAsyncThunk<null, void, ThunkApiType>(
 );
 
 
+const handlePending = (state: AuthState) => {
+  state.authError = null;
+  state.loading = true;
+};
+
+const handleFulfilled = (state:AuthState, user:AuthUser|null) => {
+  state.loading = false;
+  state.authUser = user;
+};
+
+const handleRejected = (state: AuthState, error: AuthError | undefined) => {
+  state.loading = false;
+  if (error)
+    state.authError = error;
+  else
+    state.authError = AuthError.general;
+};
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialState,
@@ -69,44 +87,33 @@ const authSlice = createSlice({
     builder
       // signInWithGoogle
       .addCase(signInWithGoogle.pending, (state) => {
-        state.loading = true;
+        handlePending(state);
       })
       .addCase(signInWithGoogle.fulfilled, (state, action) => {
-        state.loading = false;
-        state.authUser = action.payload;
+        handleFulfilled(state, action.payload);
       })
       .addCase(signInWithGoogle.rejected, (state, action) => {
-        state.loading = false;
-        if (action.payload)
-          state.authError = action.payload;
-        else
-          state.authError = AuthError.general;
+        handleRejected(state, action.payload);
       })
       // getAuthUser
       .addCase(getAuthUser.pending, (state) => {
-        state.loading = true;
+        handlePending(state);
       })
       .addCase(getAuthUser.fulfilled, (state, action) => {
-        state.loading = false;
-        state.authUser = action.payload;
+        handleFulfilled(state, action.payload);
       })
       .addCase(getAuthUser.rejected, (state, action) => {
-        state.loading = false;
-        if (action.payload)
-          state.authError = action.payload;
-        else
-          state.authError = AuthError.general;
+        handleRejected(state, action.payload);
       })
       // signOut
       .addCase(signOut.pending, (state) => {
-        state.loading = true;
+        handlePending(state);
       })
       .addCase(signOut.fulfilled, (state) => {
-        state.loading = false;
-        state.authUser = null;
+        handleFulfilled(state, null);
       })
-      .addCase(signOut.rejected, (state) => {
-        state.loading = false;
+      .addCase(signOut.rejected, (state, action) => {
+        handleRejected(state, action.payload);
       });
   }
 });

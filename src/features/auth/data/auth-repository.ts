@@ -1,10 +1,10 @@
-import TYPES from "../../injection/types";
+import TYPES from "../../../injection/types";
 import {inject, injectable} from "inversify";
 import {GoogleAuth} from "./services/google-auth";
 import {Either, left, right} from "fp-ts/Either";
-import AuthUser from "./types/auth-user";
+import AuthUser from "../types/auth-user";
 import {IAuthApi} from "./services/auth-api";
-import AuthError from "./types/auth-error";
+import AuthError from "../types/auth-error";
 import {ILocalStorage} from "./services/local-storage";
 
 export default interface IAuthRepository {

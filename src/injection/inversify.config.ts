@@ -2,11 +2,11 @@ import 'reflect-metadata';
 import {Container} from "inversify";
 import createStore, {AppStore} from "../store/store";
 import TYPES from "./types";
-import {GoogleAuth} from "../features/auth/services/google-auth";
-import IAuthRepository, {AuthRepository} from "../features/auth/auth-repository";
+import {GoogleAuth} from "../features/auth/data/services/google-auth";
+import IAuthRepository, {AuthRepository} from "../features/auth/data/auth-repository";
 import {Services} from "./services";
-import {FakeAuthApi, IAuthApi} from "../features/auth/services/auth-api";
-import {ILocalStorage, LocalStorage} from "../features/auth/services/local-storage";
+import {FakeAuthApi, IAuthApi} from "../features/auth/data/services/auth-api";
+import {ILocalStorage, LocalStorage} from "../features/auth/data/services/local-storage";
 
 const container = new Container();
 

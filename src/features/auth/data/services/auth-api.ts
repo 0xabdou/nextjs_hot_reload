@@ -1,4 +1,4 @@
-import AuthUser from "../types/auth-user";
+import AuthUser from "../../types/auth-user";
 import {injectable} from "inversify";
 
 export interface IAuthApi {

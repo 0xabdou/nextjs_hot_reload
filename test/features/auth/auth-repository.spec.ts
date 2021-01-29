@@ -1,12 +1,12 @@
 import {beforeEach, describe, expect, it} from "@jest/globals";
-import {GoogleAuth} from "../../../src/features/auth/services/google-auth";
+import {GoogleAuth} from "../../../src/features/auth/data/services/google-auth";
 import {instance, mock, reset, verify, when} from "ts-mockito";
-import {IAuthApi} from "../../../src/features/auth/services/auth-api";
+import {IAuthApi} from "../../../src/features/auth/data/services/auth-api";
 import AuthUser from "../../../src/features/auth/types/auth-user";
-import IAuthRepository, {AuthRepository} from "../../../src/features/auth/auth-repository";
+import IAuthRepository, {AuthRepository} from "../../../src/features/auth/data/auth-repository";
 import {left, right} from "fp-ts/Either";
 import AuthError from "../../../src/features/auth/types/auth-error";
-import {ILocalStorage} from "../../../src/features/auth/services/local-storage";
+import {ILocalStorage} from "../../../src/features/auth/data/services/local-storage";
 
 
 const token = 'token';

@@ -150,10 +150,10 @@ describe('signOut thunk', () => {
       expect(result).toStrictEqual({...loggedInState, authUser: null});
     });
 
-    it('should unset loading if rejected', () => {
-      const action = {type: signOut.rejected};
+    it('should unset loading and set authError if rejected', () => {
+      const action = {type: signOut.rejected.type, payload: authError};
       const result = authReducer({...loggedInState, loading: true}, action);
-      expect(result).toStrictEqual(loggedInState);
+      expect(result).toStrictEqual({...loggedInState, authError});
     });
   });
 });

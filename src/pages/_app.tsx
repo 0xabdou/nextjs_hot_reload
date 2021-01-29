@@ -7,6 +7,10 @@ import {Provider} from 'react-redux';
 import container from "../injection/inversify.config";
 import {AppStore} from "../store/store";
 import TYPES from "../injection/types";
+import {ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import React from "react";
+
 
 const App = ({Component, pageProps}: AppProps) => {
   // Fixes some visual bugs in some mobile browsers
@@ -23,6 +27,7 @@ const App = ({Component, pageProps}: AppProps) => {
       </Provider>
       }
       {ready || <div/>}
+      <ToastContainer/>
     </>
   );
 };

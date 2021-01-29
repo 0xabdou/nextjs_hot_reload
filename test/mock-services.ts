@@ -1,6 +1,6 @@
 import {Services} from "../src/injection/services";
 import {instance, mock, reset} from "ts-mockito";
-import IAuthRepository from "../src/features/auth/auth-repository";
+import IAuthRepository from "../src/features/auth/data/auth-repository";
 
 const mocks: Services = {
   authRepository: mock<IAuthRepository>(),

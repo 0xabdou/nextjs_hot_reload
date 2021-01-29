@@ -8,6 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@reduxjs/toolkit": "^1.5.0",
     "fp-ts": "^2.9.3",
     "inversify": "^5.0.5",
@@ -15,6 +20,8 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-redux": "^7.2.2",
+    "react-spinners": "^0.10.4",
+    "react-toastify": "^7.0.2",
     "reflect-metadata": "^0.1.13",
     "sass": "^1.32.5",
     "universal-cookie": "^4.0.4"
