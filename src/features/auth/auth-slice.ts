@@ -6,6 +6,7 @@ import {isRight} from "fp-ts/Either";
 import AuthUser from "./types/auth-user";
 
 export type AuthState = {
+  initialized: boolean,
   authUser: AuthUser | null,
   authError: AuthError | null,
   loading: boolean,
@@ -22,6 +23,7 @@ export type ThunkApiType = {
 };
 
 const initialState: AuthState = {
+  initialized: false,
   authUser: null,
   authError: null,
   loading: false,
@@ -101,6 +103,7 @@ const authSlice = createSlice({
       })
       .addCase(getAuthUser.fulfilled, (state, action) => {
         handleFulfilled(state, action.payload);
+        state.initialized = true;
       })
       .addCase(getAuthUser.rejected, (state, action) => {
         handleRejected(state, action.payload);
