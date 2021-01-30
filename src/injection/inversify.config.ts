@@ -29,6 +29,7 @@ const initDependencies = async () => {
   // Services needed by the redux store
   const services: Services = {
     authRepository: container.get<IAuthRepository>(TYPES.IAuthRepository),
+    userRepository: container.get<IUserRepository>(TYPES.IUserRepository),
   };
   // Redux store
   container.bind<AppStore>(TYPES.AppStore).toConstantValue(

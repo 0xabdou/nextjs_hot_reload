@@ -6,20 +6,20 @@ import authReducer, {
   signOut,
   ThunkApiType
 } from "../../../src/features/auth/auth-slice";
-import {AppDispatch, AppState} from "../../../src/store/store";
 import mockServices, {resetMocks} from "../../mock-services";
 import {verify, when} from "ts-mockito";
 import AuthUser from "../../../src/features/auth/types/auth-user";
 import {left, right} from "fp-ts/Either";
-import createMockStore from "redux-mock-store";
 import AuthError from "../../../src/features/auth/types/auth-error";
-import {AsyncThunk} from "@reduxjs/toolkit";
+import {AsyncThunk, PayloadAction} from "@reduxjs/toolkit";
+import {mockStore} from "../../mock-objects";
 
 
-const store = createMockStore<AppState, AppDispatch>()();
+const store = mockStore();
 const authUser: AuthUser = {accessToken: 'some_access_token'};
 const authError = AuthError.general;
 const initialState: AuthState = {
+  initialized: false,
   authUser: null,
   authError: null,
   loading: false,
@@ -34,13 +34,13 @@ beforeEach(() => {
 const testReducers = (thunk: AsyncThunk<any, void, ThunkApiType>) => {
   describe('reducers', () => {
     it('should set loading to true if pending', async () => {
-      const action = {type: thunk.pending.type};
+      const action: PayloadAction = {type: thunk.pending.type, payload: undefined};
       const result = authReducer(initialState, action);
       expect(result).toStrictEqual({...initialState, loading: true});
     });
 
     it('should set authUser, and loading to false if fulfilled', async () => {
-      const action = {
+      const action: PayloadAction<AuthUser> = {
         type: thunk.fulfilled.type,
         payload: authUser,
       };
@@ -49,7 +49,7 @@ const testReducers = (thunk: AsyncThunk<any, void, ThunkApiType>) => {
     });
 
     it('should set authError, and loading to false if rejected', async () => {
-      const action = {
+      const action: PayloadAction<AuthError> = {
         type: thunk.rejected.type,
         payload: authError,
       };
