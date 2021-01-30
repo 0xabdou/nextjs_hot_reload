@@ -1,12 +1,12 @@
 import {beforeEach, describe, expect, it} from "@jest/globals";
-import {GoogleAuth} from "../../../src/features/auth/data/services/google-auth";
+import {GoogleAuth} from "../../../../src/features/auth/data/services/google-auth";
 import {instance, mock, reset, verify, when} from "ts-mockito";
-import {IAuthApi} from "../../../src/features/auth/data/services/auth-api";
-import AuthUser from "../../../src/features/auth/types/auth-user";
-import IAuthRepository, {AuthRepository} from "../../../src/features/auth/data/auth-repository";
+import {IAuthApi} from "../../../../src/features/auth/data/services/auth-api";
+import AuthUser from "../../../../src/features/auth/types/auth-user";
+import IAuthRepository, {AuthRepository} from "../../../../src/features/auth/data/auth-repository";
 import {left, right} from "fp-ts/Either";
-import AuthError from "../../../src/features/auth/types/auth-error";
-import {ILocalStorage} from "../../../src/features/auth/data/services/local-storage";
+import AuthError from "../../../../src/features/auth/types/auth-error";
+import {ILocalStorage} from "../../../../src/features/auth/data/services/local-storage";
 
 
 const token = 'token';
@@ -42,7 +42,14 @@ describe('leftOrRight', () => {
     expect(result).toStrictEqual(left(AuthError.abortedByUser));
   });
 
-  it('should return cookies auth error', async () => {
+  it('should return network auth error', async () => {
+    const result = await (authRepo as AuthRepository).leftOrRight<AuthUser>(() => {
+      throw {error: AuthRepository.ERROR_NETWORK};
+    });
+    expect(result).toStrictEqual(left(AuthError.network));
+  });
+
+  it('should return general auth error', async () => {
     const result = await (authRepo as AuthRepository).leftOrRight<AuthUser>(() => {
       throw {error: 'yikes'};
     });

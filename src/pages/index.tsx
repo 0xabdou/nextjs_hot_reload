@@ -26,10 +26,20 @@ const LoggedInScreen = ({userId}: { userId: string }) => {
     dispatch(signOut());
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = new File([''], 'hole');
+    console.log(file);
+    if (e.target.files) {
+      const image: File = e.target.files[0];
+      console.log('Got image: ', image);
+    }
+  };
+
   return (
     <>
       <p>Logged in as: {userId}</p>
       <button onClick={onClick}>Logout</button>
+      <input type='file' onChange={onChange}/>
     </>
   );
 };
