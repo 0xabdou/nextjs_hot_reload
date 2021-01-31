@@ -2,14 +2,16 @@ import {Either, left, right} from "fp-ts/Either";
 import UserError from "../types/user-error";
 import User, {UserCreation} from "../types/user";
 import {IUserApi} from "./user-api";
-import {inject} from "inversify";
+import {inject, injectable} from "inversify";
 import TYPES from "../../../injection/types";
 
 export interface IUserRepository {
   getCurrentUser(): Promise<Either<UserError, User>>;
-  createUser(creation: UserCreation):Promise<Either<UserError, User>>;
+
+  createUser(creation: UserCreation): Promise<Either<UserError, User>>;
 }
 
+@injectable()
 export class UserRepository implements IUserRepository {
   private _userApi: IUserApi;
 
@@ -31,6 +33,7 @@ export class UserRepository implements IUserRepository {
       return right(result);
     } catch (e) {
       // TODO: catch them errors
+      console.log(e);
       return left(UserError.general);
     }
   }

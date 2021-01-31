@@ -1,0 +1,21 @@
+.topBar {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.profilePhoto {
+  border-radius: 50%;
+  height: 40px;
+  margin: auto 10px;
+}
+
+.title {
+  font-size: 1.6em;
+  font-weight: bold;
+}
+
+.spacer {
+  flex: 1;
+}
+

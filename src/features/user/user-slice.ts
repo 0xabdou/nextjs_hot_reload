@@ -12,15 +12,15 @@ export type UserState = {
   error: UserError | null,
 }
 
-const initialState : UserState = {
-  initialized: true,
+const initialState: UserState = {
+  initialized: false,
   currentUser: null,
   creatingUser: false,
   error: null,
 };
 
 type ThunkApiType = {
-  dispatch: AppDispatch, 
+  dispatch: AppDispatch,
   state: AppState,
   extra: {
     services: Services,
@@ -28,18 +28,18 @@ type ThunkApiType = {
   rejectValue: UserError,
 }
 
-const getCurrentUser = createAsyncThunk<User|null, void, ThunkApiType>(
+const getCurrentUser = createAsyncThunk<User | null, void, ThunkApiType>(
   'user/getCurrentUser',
   async (_, thunkApi) => {
-   const result = await thunkApi.extra.services.userRepository.getCurrentUser();
-   if (isRight(result)) {
-     return result.right;
-   }
-   return thunkApi.rejectWithValue(result.left);
+    const result = await thunkApi.extra.services.userRepository.getCurrentUser();
+    if (isRight(result)) {
+      return result.right;
+    }
+    return thunkApi.rejectWithValue(result.left);
   }
 );
 
-const handleRejected = (state: UserState, error : UserError | undefined) => {
+const handleRejected = (state: UserState, error: UserError | undefined) => {
   if (error != undefined) {
     state.error = error;
   }
@@ -50,14 +50,16 @@ const userSlice = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {},
-  extraReducers: builder => builder
-    .addCase(getCurrentUser.fulfilled, (state, action) => {
-      state.initialized = true;
-      state.currentUser = action.payload;
-    })
-    .addCase(getCurrentUser.rejected, (state, action) => {
-      handleRejected(state, action.payload);
-    }),
+  extraReducers: builder => {
+    builder
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.initialized = true;
+        state.currentUser = action.payload;
+      })
+      .addCase(getCurrentUser.rejected, (state, action) => {
+        handleRejected(state, action.payload);
+      });
+  },
 });
 
 export default userSlice.reducer;

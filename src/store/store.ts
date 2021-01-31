@@ -1,9 +1,12 @@
 import {combineReducers, configureStore, getDefaultMiddleware} from "@reduxjs/toolkit";
 import authReducer from '../features/auth/auth-slice';
+import userReducer from '../features/user/user-slice';
+
 import {Services} from "../injection/services";
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  user: userReducer,
 });
 
 

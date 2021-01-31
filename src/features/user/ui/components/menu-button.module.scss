@@ -1,0 +1,52 @@
+.menuWrapper {
+  position: relative;
+  width: 30px;
+  height: 30px;
+
+  & > * {
+    margin: 0 !important;;
+  }
+}
+
+.dropDown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  right: -5px;
+  top: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+  padding: 10px 5px;
+
+  &::before {
+    position: absolute;
+    content: '';
+    right: 15px;
+    top: -10px;
+    border-bottom: 12px solid white;
+    border-right: 4px solid transparent;
+    border-left: 10px solid transparent;
+    z-index: 2;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.menuItem {
+  padding: 10px;
+
+  &:hover {
+    background: darken(white, 10%);
+  }
+
+  &:active {
+    background: darken(white, 20%);
+  }
+}
+
+.itemIcon {
+  margin-right: 10px;
+}
