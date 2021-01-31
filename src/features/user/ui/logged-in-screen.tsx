@@ -3,6 +3,7 @@ import React, {useEffect} from "react";
 import {AppState} from "../../../store/store";
 import {getCurrentUser} from "../user-slice";
 import MainScreen from "./main-screen";
+import RegistrationScreen from "./registraion-screen";
 
 const LoggedInScreen = () => {
   const state = useSelector((state: AppState) => state.user);
@@ -19,9 +20,8 @@ const LoggedInScreen = () => {
     }
     return <p>Loading bro...</p>;
   }
-  if (!state.currentUser) {
-    return <p>Create the user bro...</p>;
-  }
+  if (!state.currentUser)
+    return <RegistrationScreen/>;
   return <MainScreen/>;
 };
 

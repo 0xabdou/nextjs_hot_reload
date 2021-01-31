@@ -11,6 +11,7 @@
     ],
     "@babel/plugin-transform-modules-commonjs",
     "babel-plugin-transform-typescript-metadata",
+    "babel-plugin-styled-components",
     "emotion"
   ]
 }

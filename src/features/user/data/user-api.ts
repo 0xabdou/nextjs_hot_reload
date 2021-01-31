@@ -11,7 +11,6 @@ export interface IUserApi {
 export class FakeUserApi implements IUserApi {
   async getCurrentUser(): Promise<User> {
     return new Promise<User>((resolve, reject) => {
-
       gapi.load('auth2', () => {
         gapi.auth2.init({
           client_id: '1063557684670-rfkmbsckud2puhj9iac1g5ttdbph5jtt.apps.googleusercontent.com',

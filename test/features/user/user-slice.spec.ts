@@ -30,28 +30,39 @@ describe('getCurrentUser', () => {
   });
 
   it('should return the right action if rejected', async () => {
-    when(MockUserRepository.getCurrentUser()) .thenResolve(left(userError));
+    when(MockUserRepository.getCurrentUser()).thenResolve(left(userError));
     const result = await act();
     expect(result.payload).toStrictEqual(userError);
     expect(result.type).toStrictEqual(getCurrentUser.rejected.type);
   });
 
   describe('reducers', () => {
-    const initialState :UserState = {
+    const initialState: UserState = {
       initialized: false,
       currentUser: null,
       creatingUser: false,
       error: null,
     };
-    it('should return the right state if fulfilled', function () {
-       const action : PayloadAction<User> = {type: getCurrentUser.fulfilled.type, payload: mockUser};
-       const result = userReducer(initialState, action);
-       expect(result).toStrictEqual({...initialState, currentUser: mockUser, initialized: true});
-    });
-    it('should return the right state if rejected', function () {
-      const action : PayloadAction<UserError> = {type: getCurrentUser.rejected.type, payload: userError};
+
+    it('should return the right state if fulfilled', () => {
+      const action: PayloadAction<User> = {type: getCurrentUser.fulfilled.type, payload: mockUser};
       const result = userReducer(initialState, action);
-      expect(result).toStrictEqual({...initialState,error: userError});
+      expect(result).toStrictEqual({...initialState, currentUser: mockUser, initialized: true});
+    });
+
+    it('should return the right state if rejected with userNotFound error', () => {
+      const action: PayloadAction<UserError> = {
+        type: getCurrentUser.rejected.type,
+        payload: UserError.notFound,
+      };
+      const result = userReducer(initialState, action);
+      expect(result).toStrictEqual({...initialState, initialized: true});
+    });
+
+    it('should return the right state if rejected with some other error', () => {
+      const action: PayloadAction<UserError> = {type: getCurrentUser.rejected.type, payload: userError};
+      const result = userReducer(initialState, action);
+      expect(result).toStrictEqual({...initialState, error: userError});
     });
   });
 });

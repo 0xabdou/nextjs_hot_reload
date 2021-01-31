@@ -19,7 +19,8 @@ export class UserRepository implements IUserRepository {
     this._userApi = userApi;
   }
 
-  getCurrentUser(): Promise<Either<UserError, User>> {
+  async getCurrentUser(): Promise<Either<UserError, User>> {
+    return left(UserError.notFound);
     return this.leftOrRight(() => this._userApi.getCurrentUser());
   }
 

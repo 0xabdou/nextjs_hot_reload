@@ -57,7 +57,10 @@ const userSlice = createSlice({
         state.currentUser = action.payload;
       })
       .addCase(getCurrentUser.rejected, (state, action) => {
-        handleRejected(state, action.payload);
+        if (action.payload == UserError.notFound) {
+          state.initialized = true;
+        } else
+          handleRejected(state, action.payload);
       });
   },
 });
