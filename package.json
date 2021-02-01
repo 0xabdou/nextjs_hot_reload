@@ -17,7 +17,7 @@
     "axios": "^0.21.1",
     "fp-ts": "^2.9.3",
     "inversify": "^5.0.5",
-    "next": "10.0.5",
+    "next": "^10.0.7-canary.0",
     "polished": "^4.1.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
