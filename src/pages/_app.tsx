@@ -1,4 +1,6 @@
 import '../styles/globals.scss';
+import 'react-image-crop/lib/ReactCrop.scss';
+import 'react-toastify/dist/ReactToastify.css';
 import {AppProps} from "next/app";
 import useInjection from "../injection/useInjection";
 import CustomHead from "../components/custom-head";
@@ -8,7 +10,6 @@ import container from "../injection/inversify.config";
 import {AppStore} from "../store/store";
 import TYPES from "../injection/types";
 import {ToastContainer} from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import React from "react";
 
 

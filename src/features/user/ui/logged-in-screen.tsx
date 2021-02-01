@@ -13,7 +13,6 @@ const LoggedInScreen = () => {
     dispatch(getCurrentUser());
   }, []);
 
-
   if (!state.initialized) {
     if (state.error != null) {
       return <p>Error bro....</p>;

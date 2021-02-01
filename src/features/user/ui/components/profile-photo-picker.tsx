@@ -17,6 +17,7 @@ const PhotoWrapper = styled.div<ProfilePhotoPickerStyle>`
 
 const Photo = styled.img<ProfilePhotoPickerStyle>`
   border-radius: 50%;
+  border: 1px solid black;
   width: ${props => props.size ?? _defaultSize}px;
   height: ${props => props.size ?? _defaultSize}px;
 `;
@@ -28,6 +29,7 @@ const EditButtonWrapper = styled.div`
 `;
 
 type ProfilePhotoPickerProps = {
+  src: string,
   onPhotoPicked: (photo: File) => void,
 } & ProfilePhotoPickerStyle;
 
@@ -49,7 +51,7 @@ const ProfilePhotoPicker = (props: ProfilePhotoPickerProps) => {
 
   return (
     <PhotoWrapper size={props.size}>
-      <Photo size={props.size} src={'/images/default-pp.png'} alt='profile photo'/>
+      <Photo size={props.size} src={props.src} alt='profile photo'/>
       <EditButtonWrapper>
         <MenuButton
           size={props.size ? props.size * 0.2 : undefined}
