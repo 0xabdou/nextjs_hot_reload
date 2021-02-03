@@ -1,3 +1,5 @@
+This repo is a minimal project to reproduce a bug in nextjs. (view the issue [here](https://github.com/vercel/next.js/issues/21752));
+
 <img src="public/next.png" alt="Logo" width="250" height="250"/>
 <br/>
 <br/>
